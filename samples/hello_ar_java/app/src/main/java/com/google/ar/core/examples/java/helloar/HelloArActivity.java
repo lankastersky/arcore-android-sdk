@@ -26,6 +26,7 @@ import android.widget.Toast;
 import com.google.ar.core.Anchor;
 import com.google.ar.core.ArCoreApk;
 import com.google.ar.core.Camera;
+import com.google.ar.core.Config;
 import com.google.ar.core.Frame;
 import com.google.ar.core.HitResult;
 import com.google.ar.core.Plane;
@@ -143,6 +144,10 @@ public class HelloArActivity extends AppCompatActivity implements GLSurfaceView.
 
         // Create the session.
         session = new Session(/* context= */ this);
+
+        Config config = new Config(session);
+        config.setPlaneFindingMode(Config.PlaneFindingMode.HORIZONTAL_AND_VERTICAL);
+        session.configure(config);
 
       } catch (UnavailableArcoreNotInstalledException
           | UnavailableUserDeclinedInstallationException e) {
